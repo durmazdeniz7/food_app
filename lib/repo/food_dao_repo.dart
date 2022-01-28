@@ -12,7 +12,12 @@ class FoodDaoRepo {
   }
 
   List<Cart> parseResponseCart(String body) {
+    try {
     return CartResponse.fromJson(jsonDecode(body)).sepet;
+      
+    } catch (e) {
+      return <Cart>[];
+    }
   }
 
   Future<List<Food>> getFood() async {
@@ -43,7 +48,7 @@ class FoodDaoRepo {
     var veri = {"kullanici_adi": Constant.kullaniciAdi};
     var response = await http.post(url, body: veri);
 
-    return parseResponseCart(response.body);
+    return  parseResponseCart(response.body);
   }
 
   Future<void> deleteToCard(String id) async {

@@ -4,15 +4,15 @@ import 'package:food_app/repo/food_dao_repo.dart';
 
 class CartCubit extends Cubit<List<Cart>> {
   CartCubit() : super(<Cart>[]);
-FoodDaoRepo foodDaoRepo=FoodDaoRepo();
+  FoodDaoRepo foodDaoRepo = FoodDaoRepo();
 
-Future<void> getCard()async{
-  var liste=await foodDaoRepo.getCart();
-  emit(liste);
-}
-Future<void> deleteToCard(String id) async{
-  await foodDaoRepo.deleteToCard(id);
-}
+  Future<void> getCard() async {
+    var liste = await foodDaoRepo.getCart();
+    emit(liste);
+    
+  }
 
-  
+  Future<void> deleteToCard(String id) async {
+    await foodDaoRepo.deleteToCard(id);
+  }
 }
