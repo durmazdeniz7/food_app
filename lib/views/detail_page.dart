@@ -17,9 +17,7 @@ class DetailPage extends StatefulWidget {
 }
 
 class _DetailPageState extends State<DetailPage> {
-var myList=<Cart>[];
-
-
+  var myList = <Cart>[];
 
   int adet = 1;
 
@@ -30,7 +28,7 @@ var myList=<Cart>[];
       appBar: AppBar(
         elevation: 0,
         centerTitle: true,
-        title: const Text("DetailPage"),
+        title: const Text("Detay"),
         leading: IconButton(
           onPressed: () {
             Navigator.of(context).pop();
@@ -43,7 +41,7 @@ var myList=<Cart>[];
           Stack(
             children: [
               Container(
-                height: MediaQuery.of(context).size.height - 150,
+                height: MediaQuery.of(context).size.height - 100,
                 width: MediaQuery.of(context).size.width,
                 color: Colors.transparent,
               ),
@@ -72,7 +70,8 @@ var myList=<Cart>[];
                   left: 15,
                   child: Text(
                     widget.food.yemek_fiyat + " ₺",
-                    style: TextStyle(fontSize: 24, color: Colors.grey[900]),
+                    style:
+                        TextStyle(fontSize: 24, color: Colors.grey[900]),
                   )),
               Positioned(
                 top: 275,
@@ -83,12 +82,14 @@ var myList=<Cart>[];
                   children: [
                     Text(
                       widget.food.yemek_adi,
-                      style: const TextStyle(fontSize: 24, color: Colors.grey),
+                      style: const TextStyle(
+                          fontSize: 24, color: Colors.grey),
                     ),
                     Container(
                       decoration: const BoxDecoration(
                           color: Colors.blue,
-                          borderRadius: BorderRadius.all(Radius.circular(25))),
+                          borderRadius:
+                              BorderRadius.all(Radius.circular(25))),
                       child: Row(
                         children: [
                           InkWell(
@@ -107,11 +108,12 @@ var myList=<Cart>[];
                             ),
                           ),
                           Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 5),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 5),
                               child: Text(adet.toString(),
                                   style: TextStyle(
-                                      fontSize: 24, color: Colors.white))),
+                                      fontSize: 24,
+                                      color: Colors.white))),
                           InkWell(
                             onTap: () {
                               setState(() {
@@ -137,39 +139,31 @@ var myList=<Cart>[];
                   child: ListView(
                     scrollDirection: Axis.horizontal,
                     children: [
-                      myCont(),
-                      myCont(),
-                      myCont(),
-                      myCont(),
-                      myCont(),
+                      myCont("Küçük"),
+                      myCont("Orta"),
+                      myCont("Büyük"),
+                      
                     ],
                   ),
                 ),
               )
             ],
           ),
-          Container(
-            color: Colors.yellow,
-            alignment: Alignment.center,
-            height: 80,
-            child: const Text("Sepete ekle"),
-          )
         ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-         
-          context
-              .read<DetailPageCubit>()
-              .addToCart(widget.food, adet.toString(),);
-        },
-        child: const Icon(Icons.add_circle),
+      floatingActionButton: FloatingActionButton(onPressed: (){
+        context.read<DetailPageCubit>().addToCart(widget.food, adet.toString());
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Sepete Eklendi")));
+        }
+      ,child: const Icon(Icons.add_shopping_cart),
       ),
     );
   }
 
-  Widget myCont() {
+  Widget myCont(String text) {
     return Container(
+      alignment: Alignment.bottomCenter,
+      child: Text(text,style: const TextStyle(fontSize: 24),),
       margin: EdgeInsets.all(5),
       height: 180,
       width: 150,

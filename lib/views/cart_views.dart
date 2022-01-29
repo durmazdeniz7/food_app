@@ -111,12 +111,11 @@ class _CartViewsState extends State<CartViews> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(Constant.sepetTutarHesapla(state).toString()),
-                      SizedBox(
-                          child: Chip(
-                        label: const Text("Siparişi Tamamla"),
+                      Text(Constant.sepetTutarHesapla(state).toString()+" ₺",style: const TextStyle(fontSize: 24),),
+                      Chip(
+                        label: const Text("Siparişi Tamamla",style: TextStyle(fontSize: 24),),
                         backgroundColor: Colors.orange,
-                      ))
+                      )
                     ],
                   ),
                 ),

@@ -3,9 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/core/contant.dart';
 import 'package:food_app/cubit/dashboard_cubit.dart';
 import 'package:food_app/entity/food.dart';
+import 'package:food_app/repo/auth_service.dart';
 import 'package:food_app/views/cart_views.dart';
 import 'package:food_app/views/detail_page.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class DashBoard extends StatefulWidget {
   const DashBoard({Key? key}) : super(key: key);
@@ -23,8 +25,12 @@ class _DashBoardState extends State<DashBoard> {
 
   @override
   Widget build(BuildContext context) {
+    var myAuth=Provider.of<AuthService2>(context);
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          myAuth.signOut();
+        }, icon: const Icon(Icons.logout,color: Colors.black,)),
         centerTitle: true,
         backgroundColor: Colors.white,
         title: RichText(
@@ -73,13 +79,13 @@ class _DashBoardState extends State<DashBoard> {
                     elevation: 4,
                     child: Column(
                       children: [
-                        const Padding(
-                          padding: EdgeInsets.all(8.0),
-                          child: Align(
-                            child: Icon(Icons.favorite_border),
-                            alignment: Alignment.topRight,
-                          ),
-                        ),
+                        // const Padding(
+                        //   padding: EdgeInsets.all(8.0),
+                        //   child: Align(
+                        //     child: Icon(Icons.favorite_border),
+                        //     alignment: Alignment.topRight,
+                        //   ),
+                        // ),
                         Hero(
                           tag: food[index].yemek_resim_adi,
                           child: Container(
