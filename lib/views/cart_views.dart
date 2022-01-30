@@ -115,7 +115,7 @@ class _CartViewsState extends State<CartViews> {
                       InkWell(
                         onTap: ()async {
                       await    context.read<CartCubit>().deleteAllCard();
-                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Siparişiniz alnıdı")));
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Siparişiniz alındı")));
                         await  context.read<CartCubit>().getCard();
                           setState(() {
                             
