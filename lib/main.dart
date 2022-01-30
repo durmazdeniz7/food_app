@@ -4,8 +4,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:food_app/cubit/cart_cubit.dart';
 import 'package:food_app/cubit/dashboard_cubit.dart';
 import 'package:food_app/cubit/detail_page_cubit.dart';
+import 'package:food_app/cubit/kisi_cubit.dart';
 import 'package:food_app/repo/auth_service.dart';
-import 'package:food_app/views/dashboard.dart';
 import 'package:food_app/views/login_page.dart';
 import 'package:provider/provider.dart';
 
@@ -25,12 +25,16 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => DashBoardCubit()),
         BlocProvider(create: (context) => DetailPageCubit()),
         BlocProvider(create: (context) => CartCubit()),
+        BlocProvider(create: (context) => KisiCubit()),
+
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          
+
         ),
         home: ChangeNotifierProvider(
             create: (_) => AuthService2(), child: const LoginPage()),

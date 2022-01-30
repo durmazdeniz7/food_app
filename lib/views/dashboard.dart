@@ -6,6 +6,7 @@ import 'package:food_app/entity/food.dart';
 import 'package:food_app/repo/auth_service.dart';
 import 'package:food_app/views/cart_views.dart';
 import 'package:food_app/views/detail_page.dart';
+import 'package:food_app/widgets/my_drawer.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
@@ -27,10 +28,21 @@ class _DashBoardState extends State<DashBoard> {
   Widget build(BuildContext context) {
     var myAuth=Provider.of<AuthService2>(context);
     return Scaffold(
+      drawer: const MyDrawer(),
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          myAuth.signOut();
-        }, icon: const Icon(Icons.logout,color: Colors.black,)),
+        leading: Builder(
+      builder: (BuildContext context) {
+        return IconButton(
+          icon: const Icon(
+            Icons.person,color: Colors.black,
+          ),
+          onPressed: () {
+            Scaffold.of(context).openDrawer();
+          },
+          tooltip: MaterialLocalizations.of(context).openAppDrawerTooltip,
+        );
+      },
+    ),
         centerTitle: true,
         backgroundColor: Colors.white,
         title: RichText(

@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:food_app/cubit/kisi_cubit.dart';
+import 'package:food_app/entity/kisi.dart';
 
 class KisiBilgi extends StatefulWidget {
   const KisiBilgi({Key? key}) : super(key: key);
@@ -17,6 +20,12 @@ class _KisiBilgiState extends State<KisiBilgi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back_ios,color: Colors.black,),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: const Text(
           "Bilgi",
           style: TextStyle(color: Colors.black),
@@ -30,6 +39,18 @@ class _KisiBilgiState extends State<KisiBilgi> {
             builtText(tfSoyad, "Soyad", "Soyadınızı Giriniz"),
             builtText(tTelNo, "Telefon Numarası", "Telefon Numaranızı Giriniz"),
             builtText(tfAd, "Adres", "Adresinizi Giriniz"),
+            ElevatedButton(
+                onPressed: () {
+                  context.read<KisiCubit>().add(Kisi(
+                      id: "",
+                      ad: tfAd.text,
+                      soyad: tfSoyad.text,
+                      telNo: tTelNo.text,
+                      adres: tfAdres.text));
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(const SnackBar(content: Text("Eklendi")));
+                },
+                child: const Text("Ekle"))
           ],
         ),
       ),
