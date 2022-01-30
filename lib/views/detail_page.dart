@@ -151,7 +151,9 @@ class _DetailPageState extends State<DetailPage> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(onPressed: (){
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.red,
+        onPressed: (){
         context.read<DetailPageCubit>().addToCart(widget.food, adet.toString());
         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Sepete Eklendi")));
         }

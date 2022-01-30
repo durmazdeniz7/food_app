@@ -15,4 +15,10 @@ class CartCubit extends Cubit<List<Cart>> {
   Future<void> deleteToCard(String id) async {
     await foodDaoRepo.deleteToCard(id);
   }
+  Future<void> deleteAllCard() async{
+    var myList=await foodDaoRepo.getCart();
+    for (var i = 0; i < myList.length; i++) {
+      deleteToCard(myList[i].sepet_yemek_id);
+    }
+  }
 }

@@ -112,9 +112,19 @@ class _CartViewsState extends State<CartViews> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(Constant.sepetTutarHesapla(state).toString()+" ₺",style: const TextStyle(fontSize: 24),),
-                      Chip(
-                        label: const Text("Siparişi Tamamla",style: TextStyle(fontSize: 24),),
-                        backgroundColor: Colors.orange,
+                      InkWell(
+                        onTap: ()async {
+                      await    context.read<CartCubit>().deleteAllCard();
+                          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Siparişiniz alnıdı")));
+                        await  context.read<CartCubit>().getCard();
+                          setState(() {
+                            
+                          });
+                        },
+                        child: Chip(
+                          label: const Text("Siparişi Tamamla",style: TextStyle(fontSize: 24),),
+                          backgroundColor: Colors.orange,
+                        ),
                       )
                     ],
                   ),
@@ -129,11 +139,5 @@ class _CartViewsState extends State<CartViews> {
     );
   }
 
-  int toplam(List<Cart> num) {
-    int toplam = 0;
-    for (var item in num) {
-      toplam = int.parse(item.yemek_fiyat) + int.parse(item.yemek_siparis_adet);
-    }
-    return toplam;
-  }
+  
 }
